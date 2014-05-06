@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<TABLE WIDTH=100%>
+ <TR> 
+  <TH VALIGN=TOP ALIGN=LEFT> <p>{{ project.datetime }}</p>
+        <h2>{{ project.title}} <a href="{% url 'project' %}"><span class="label label-important">удалить</span></a> <a href="{% url 'project' %}"><span class="label label-success">изменить</span></a></h2>
+	<p>{{ project.content}}</p>
+  </TH>
+ {% if user.is_active and user.is_staff %}
+ <script type="text/javascript">
+     $(function () {
+      tax_data = {{ plot_data|safe }};
+      new Morris.Line({
+        element: 'hero-graph',
+        data: tax_data,
+        xkey: 'u',
+        ykeys: ['sorned'],
+        labels: ['sorned']
+      });
+      $('.code-example').each(function (index, el) {
+        eval($(el).text());
+      });
+    });
+ </script>
+  <TH ALIGN=RIRHT>
+<div class="graph-container">
+	<div class="caption">
+	</div>
+	<div id="hero-graph" class="graph"></div>
+</div>
+  </TH>
+ </TR>
+</TABLE>
+
+<div id="disqus_thread"></div>
+<script src="{{STATIC_URL}}js/jquery-1.7.2.min.js" type="text/javascript"> </script>
+<script src="{{STATIC_URL}}js/raphael-min.js" type="text/javascript"> </script>
+<script src="{{STATIC_URL}}js/morris.js" type="text/javascript"> </script>
+<!--<script src="{{STATIC_URL}}js/script.js" type="text/javascript"> </script>-->
+
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'localhosttestcs'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+</p>	
+{% endif %}
+{% endblock %}

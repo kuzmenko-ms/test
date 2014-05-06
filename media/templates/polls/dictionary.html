@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="buttons-container" style="padding: 14px 19px;">
+{% if user.is_active and user.is_staff %}
+<a href="{% url 'project' %}"><button type="button" class="btn btn-success">Создать проект</button></a>{% endif %}
+
+
+   
+    <a href="{% url 'list' %}"><button class="btn info">Справочник</button></a>
+</div>{
+	{% for components in object_list %}
+          <p>{{ components.name }}</p>
+	  <h6><p>{{ components.type_c.type_name }}</p></h6>
+}
+
+	{% empty %}
+	<p>Пусто(((</p>
+	{% endfor %}     
+<body>
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+     
+    <form  action="" method="post">
+        <label>Имя компонента:</label> 
+        <input name="name" type="text" value="{{ form.name }}">
+         <label>Тип:</label>
+	<select name="type_c">
+	{% for components in object_list %}
+          <option value="{{ components.type_c.type_name }}">{{ components.type_c.type_name }}</option>
+}
+	{% empty %}
+	<p>Пусто(((</p>
+	{% endfor %}
+</select>
+        <input  type="submit" value="Отправить">
+        {% csrf_token %}
+    </form>
+</body>
+ 
+</html>
+
+
+
+
+
+{% endblock %}
+
+

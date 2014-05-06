@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="buttons-container" style="padding: 14px 19px;">
+{% if user.is_active and user.is_staff %}
+<a href="{% url 'project' %}"><button type="button" class="btn btn-success">Создать проект</button></a>{% endif %}   
+<a href="{% url 'dictionary' %}"><button type="button" class="btn">Справочник</button></a>   
+</div>    
+</body>
+<TABLE WIDTH=100%>
+ <TR> 
+  <TH VALIGN=TOP ALIGN=LEFT><form  action="" method="post">
+        <label>Имя компонента:</label> 
+        <input name="name" type="text" value="{{ form.name }}">
+         <label>Тип:</label>
+	<select name="type_components">
+	{% for components in model %}
+          <option value="{{components.id}}">{{components.type_name}}</option>
+	{% endfor %}
+	</select>
+        <input class="btn info"  type="submit" value="Отправить">
+        {% csrf_token %}
+    </form></TH>
+  <TH ALIGN=CENTER>
+	{% for components1 in model11 %}
+        <p>{{ components1.name }} | {{ components1.type_c.type_name }}<a href="{% url 'delete_comp' components1.id %}"> <span class="label label-important">удалить</span> </a></p>
+	 
+	{% endfor %}     
+<body>
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}</TH>
+ </TR>
+</TABLE>
+
+{% endblock %}
+
+

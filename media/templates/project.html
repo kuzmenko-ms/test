@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+     
+    <title>Создание проекта</title>
+</head>
+
+     <div id = "1" align="center";>
+<body>
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+     
+    <form action="" method="post">
+        <label>Заголовок</label> 
+        <input name="title" type="text" value="{{ form.title }}">
+ 
+        <label>О чем</label> 
+        <input name="name" type="text" value="{{ form.name }}">
+	
+	 <label>Краткая информация</label> 
+        <input name="descr" type="text" value="{{ form.descr }}">
+         
+        <label>Описание проекта</label>
+        <textarea name="content">{{ form.content }}</textarea><br>
+         
+        <input type="submit" value="Отправить">
+        {% csrf_token %}
+    </form>
+</body>
+</div>
+ 
+ 
+ 
+</html>
+{% endblock %}

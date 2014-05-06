@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+     
+    <title>Создание проекта</title>
+</head>
+
+     {% for project in object_list %}
+          <p>{{ project.datetime }}</p>
+	  <h4><a href="{{project.get_absolute_url }}">{{ project.title }}</a></h4>
+           <h6><p>{{ project.name}}</p><h6>
+	  <h6><p>{{ project.descr }}</p></h6>
+____________________________________________________________________________________________________
+	{% empty %}
+	<p>Пусто(((</p>
+	{% endfor %}
+<body>
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+     
+    <form action="" method="post">
+        <label>Имя компонента:</label> 
+        <input name="title" type="text" value="{{ form.title }}">
+         <label>Тип:</label>
+	<select>
+	
+</select>
+        <input type="submit" value="Отправить">
+        {% csrf_token %}
+    </form>
+</body>
+ 
+</html>
+
+
+{% endblock %}

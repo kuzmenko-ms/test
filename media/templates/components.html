@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+     
+    <title>Создание проекта</title>
+</head>
+
+     
+<body>
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+     
+    <form action="" method="post">
+        <label>Имя компонента:</label> 
+        <input name="title" type="text" value="{{ form.title }}">
+         <label>Тип:</label>
+	<select>
+	
+</select>
+        <input type="submit" value="Отправить">
+        {% csrf_token %}
+    </form>
+</body>
+ 
+</html>
+
+
+{% endblock %}

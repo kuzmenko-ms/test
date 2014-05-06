@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<!— Modal —>
+{% if not user.is_active and not user.is_staff %}
+<div class="modal" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+<a href="#" class="close" data-dismiss="alert">&times</a>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">info</h4>
+      </div>
+      <div class="modal-body">
+      Приветствуем ВАС на сайте ??????.RU.
+ Уважаемые пользователи, мы рады приветствовать Вас на новом сервисе. 
+Вы сможете работать над своими проектами,специально для Вас мы открыли этот проект и сейчас хотим пригласить Вас протестировать его! 
+Мы, команда разработчиков, постараемся сделать всё как можно лучше. 
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% if not user.is_active and not user.is_staff %}
+<ul class="nav nav-pills nav-stacked">
+	<li><a href="{% url 'auth_login' %}">Вход</a></li>
+	<li><a href="{% url 'registration_register' %}">Регистрация</a></li>
+</ul>
+{% endif %}
+<br><br><br>
+<div class="well well-large">
+ Уважаемые пользователи, мы рады приветствовать Вас на новом сервисе. 
+Вы сможете работать над своими проектами,специально для Вас мы открыли этот проект и сейчас хотим пригласить Вас протестировать его! 
+Мы, команда разработчиков, постараемся сделать всё как можно лучше. 
+</div>
+{% endblock %}
+
+

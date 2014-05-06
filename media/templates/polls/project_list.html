@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="buttons-container" style="padding: 14px 19px;">{% if user.is_active and user.is_staff %}
+<a href="{% url 'project' %}"><button type="button" class="btn btn-success">Создать проект</button></a>
+<a href="{% url 'dictionary' %}"><button type="button" class="btn">Справочник</button></a>   
+{% endif %}
+
+ 
+</div>
+<div class="well">
+
+	{% for project in object_list %}
+          <p>{{ project.datetime }}</p>
+	  <h4><a href="{{project.get_absolute_url }}">{{ project.title }}</a></h4>
+           <h6><p>{{ project.name}}</p><h6>
+	  <h6><p>{{ project.descr }}</p></h6>
+____________________________________________________________________________________________________
+	{% empty %}
+	<p>Пусто(((</p>
+	{% endfor %}<br>
+</div>
+<ul class="pager">
+  <li class="previous">
+    <a href="#">&larr; Назад</a>
+  </li>
+  <li class="next">
+    <a href="#">Вперед &rarr;</a>
+  </li>
+</ul>
+{% endblock %}
+
+
+
