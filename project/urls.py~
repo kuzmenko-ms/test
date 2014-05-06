@@ -1,0 +1,8 @@
+from django.conf.urls import patterns, include, url
+from project.views import delete_proj
+ 
+urlpatterns = patterns('',
+ 
+    url(r'^$', 'project.views.project', name='project'),
+    url(r'^delp/(?P<id_c>\d+)/$',delete_proj, name='delete_proj'),
+)

@@ -5,4 +5,5 @@ urlpatterns = patterns('',
 url(r'^$',ProjectsListView.as_view(), name='list1'),
 url(r'^(?P<pk>\d+)/$', project_view),
 
+
 )

@@ -56,7 +56,7 @@ INSTALLED_APPS = (
     'disqus',
     'project',
     'dictionary',
-        	
+   	
 )
 
 MIDDLEWARE_CLASSES = (

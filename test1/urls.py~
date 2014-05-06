@@ -11,8 +11,10 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/',include('registration.urls')),
     url(r'^polls/', include('polls.urls')),
+    url(r'^components/', include('components.urls')),
     #url(r'^components/','components.views.dictionary', name='dictionary'),
     url(r'^project/', include('project.urls')),
+   
 )
 
 

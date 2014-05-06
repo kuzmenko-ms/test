@@ -28,3 +28,4 @@ def project(request):
        
         return render(request, 'good.html', {'errors': errors, 'form':form, 'model': model})
     return render(request, 'project.html', {'errors': errors, 'form':form, 'model': model})
+    

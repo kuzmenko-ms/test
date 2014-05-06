@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
+
  
 urlpatterns = patterns('',
  
-    url(r'^$', 'polls.views.dictionary', name='polls'),
+url(r'^var/$',varvar, name='varvar'),
+   
 )

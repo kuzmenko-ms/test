@@ -1,32 +1,35 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from polls.models import Components
-import datetime
-from django.views.generic import ListView, DetailView
+from django.template import RequestContext
+from polls.models import Project,Variants
+from polls.models import Pvar_var
 from polls.models import Component_type
-from polls.models import Components
-from polls.models import Project
- 
-def dictionary(request):
+from django.views.generic import ListView, DetailView
+from django.forms import ModelForm
+from django.shortcuts import redirect
+import random
+import json
+from django.shortcuts import HttpResponse
+from django.shortcuts import render
+
+def varvar(request):
+    model_p_vv = Pvar_var.objects.all()
+    model_var = Variants.objects.all()
     errors = []
     form = {}
     if request.POST:
-        form['name'] = request.POST.get('title')
-        form['type_c'] = request.POST.get('type_c')
-        if not form['title']:
+        form['type_var1'] = request.POST.get('type_var1')
+        form['type_var2'] = request.POST.get('type_var2')
+        form['p'] = request.POST.get('p')
+        if not form['type_var1']:
             errors.append('error name')
+        if not form['type_var2']:
+            errors.append('error name')
+        if not form['p']:
+            errors.append('error name')        
         if not errors:
            
-            model = Components(name=form['name'],type_c=form['type_c'])
-            model.save()
+            model1 = Pvar_var(var1_id=form['type_var1'],var2_id=form['type_var2'],p=form['p'])
+            model1.save()
        
-        return render(request, 'good.html', {'errors': errors, 'form':form})
-    return render(request, 'components.html', {'errors': errors, 'form':form})
-
-class DictionaryListView(ListView):
-	model = Components
-	model1 = Component_type
-	
-class ProjectsListView(ListView):
-	model = Project
+        return render(request, 'polls/var.html', {'errors': errors, 'form':form, 'model_p_vv' : model_p_vv,'model_var' : model_var })
+    return render(request, 'polls/var.html', {'errors': errors, 'form':form, 'model_p_vv' : model_p_vv,'model_var' : model_var })
 

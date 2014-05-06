@@ -27,8 +27,18 @@ def delete_comp(request, id_c):
     if len(model_d_com) > 0:
         model_d_com[0].delete()
     else:
-        errors.append('Bad index3')  
+        errors.append('Bad index :(')  
     return redirect('/components/')
+
+def delete_proj(request, id_p):
+        errors = []
+        form = {}
+        model_d_project = Project.objects.filter(id=id_p)
+        if len(model_d_project) > 0:
+            model_d_project[0].delete()
+        else:
+            errors.append('Bad index :(')  
+        return redirect('/polls/')    
     
 def dictionary(request):
     model11 = Components.objects.all()

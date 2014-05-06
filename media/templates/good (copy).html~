@@ -1,0 +1,7 @@
+<select>
+  <option>Filter 1</option>
+  <option>Filter 2</option>
+</select>
+
+
+<INPUT NAME= "city" SIZE= "20" MAXLENGTH= "20"> <BR>

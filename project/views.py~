@@ -26,5 +26,15 @@ def project(request):
             model = Project(title=form['title'],name=form['name'],descr=     form['descr'],content=form['content'],datetime=datetime.datetime.now())
             model.save()
        
-        return render(request, 'polls/project_list.html', {'errors': errors, 'form':form, 'model': model})
+        return render(request, 'good.html', {'errors': errors, 'form':form, 'model': model})
     return render(request, 'project.html', {'errors': errors, 'form':form, 'model': model})
+    
+    def delete_proj(request, id_p):
+        errors = []
+        form = {}
+        model_d_project = Project.objects.filter(id=id_p)
+        if len(model_d_project) > 0:
+            model_d_project[0].delete()
+        else:
+            errors.append('Bad index :(')  
+        return redirect('/projects/')

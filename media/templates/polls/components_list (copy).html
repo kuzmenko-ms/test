@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="" method="post">
+        <label>Вариант1:</label>
+	<select name="type_var1">
+	{% for var in model_var %}
+          <option value="{{var.num}}">{{var.num}}</option>
+	{% endfor %}
+	</select>
+	<label>Вариант2:</label>
+	<select name="type_var2">
+	{% for var2 in model_var%}
+          <option value="{{var2.num}}">{{var2.num}}</option>
+	{% endfor %}
+	</select>
+	<label>Вероятность</label> 
+        <input name="p" type="text" value="{{ p }}">
+        <input class="btn info"  type="submit" value="Отправить"></form>
+        {% csrf_token %}
+    </form></TH>
+  <TH ALIGN=CENTER>
+	{% for components1 in model11 %}
+        <p>{{ components1.name }} | {{ components1.type_c.type_name }}<a href="{% url 'delete_comp' components1.id %}"> <span class="label label-important">удалить</span> </a></p>
+	 
+	{% endfor %}     
+<body>
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}</TH>
+ </TR>
+</TABLE>
+
+{% endblock %}
+
+

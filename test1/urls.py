@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^components/', include('components.urls')),
     #url(r'^components/','components.views.dictionary', name='dictionary'),
     url(r'^project/', include('project.urls')),
+    url(r'^dictionary/', include('dictionary.urls')),
 )
 
 

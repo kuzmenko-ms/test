@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<TABLE WIDTH=100%>
+ <TR> 
+  <TH VALIGN=TOP ALIGN=Left>
+  <form action="" method="post">         {% csrf_token %}
+
+        <label>Вариант1:</label>
+	<select name="type_var1">
+	{% for var in model_var %}
+          <option value="{{var.id}}">{{var.num}}</option>
+	{% endfor %}
+	</select>
+	<label>Вариант2:</label>
+	<select name="type_var2">
+	{% for var2 in model_var%}
+          <option value="{{var2.id}}">{{var2.num}}</option>
+	{% endfor %}
+	</select>
+	<label>Вероятность</label> 
+        <input name="p" type="text" value="{{ p }}">
+        <input class="btn info"  type="submit" value="Отправить"></form>
+    </form>
+  </TH>
+  <TH ALIGN=CENTER>
+	</TH>
+ </TR>
+</TABLE>
+{% endblock %}
+
+
+

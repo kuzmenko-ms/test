@@ -1,11 +1,12 @@
+
 {% extends "base.html" %}
 
 {% block content %}
-
 <TABLE WIDTH=100%>
  <TR> 
-  <TH VALIGN=TOP ALIGN=LEFT> <p>{{ project.datetime }}</p>
-        <h2>{{ project.title}} <a href="{% url 'project' %}"><span class="label label-important">удалить</span></a> <a href="{% url 'project' %}"><span class="label label-success">изменить</span></a></h2>
+  <TH VALIGN=TOP ALIGN=LEFT> <p>{{ project.datetime }}</p>  
+        <h2>{{ project.title}} <a href="{% url 'delete_proj' project.id %}"> <span class="label label-important">удалить</span> </a></p></h2>
+        
 	<p>{{ project.content}}</p>
   </TH>
  {% if user.is_active and user.is_staff %}
@@ -16,8 +17,8 @@
         element: 'hero-graph',
         data: tax_data,
         xkey: 'u',
-        ykeys: ['sorned']
-        
+        ykeys: ['sorned'],
+        labels: ['sorned']
       });
       $('.code-example').each(function (index, el) {
         eval($(el).text());
@@ -31,6 +32,35 @@
 	<div id="hero-graph" class="graph"></div>
 </div>
   </TH>
+ </TR>
+ <TR>
+ <TH ALIGN=left>
+ Варианты:<br>
+     <select style="width: 100px;">
+      <option>Filter 1</option>
+      <option>Filter 2</option>
+    </select><a href="{% url 'varvar' %}"><button type="button" class="btn btn-success">Выбор вариантов</button></a>
+<BR>
+{% for variants in model_variants %}
+<INPUT readonly="readonly" value="{{variants.num}}" NAME= "ci" SIZE= "0" MAXLENGTH= "10">  <INPUT disabled="disabled" value="{{variants.type_c.type_name}}" NAME= "cy" SIZE= "5" MAXLENGTH= "5">  <INPUT disabled="disabled" value="{{variants.pvar.p}}" NAME= "y" SIZE= "5" MAXLENGTH= "5"><br><br>
+	{% endfor %}
+	
+ </TH>
+ <TH >
+ Создание Варианта:
+ <INPUT NAME= "" SIZE= "20" MAXLENGTH= "20"> 
+<BR>
+<BR>
+<select>
+  <option>Type c</option>
+</select>
+<BR>
+<select>
+  <option>P</option>
+</select>
+<BR>
+<a href="{% url 'dictionary' %}"><button type="button" class="btn">Добавить</button></a>   
+ </TH>
  </TR>
 </TABLE>
 
