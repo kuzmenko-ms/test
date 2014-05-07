@@ -1,8 +1,10 @@
 from django.conf.urls import patterns, include, url
+from dictionary.views import varvar
 
  
 urlpatterns = patterns('',
  
 url(r'^var/$',varvar, name='varvar'),
+url(r'^addvar/$',add_var, name='add_var'),
    
 )

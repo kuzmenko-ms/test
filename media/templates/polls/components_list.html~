@@ -19,7 +19,7 @@
           <option value="{{components.id}}">{{components.type_name}}</option>
 	{% endfor %}
 	</select>
-        <input class="btn info"  type="submit" value="Отправить"
+        <input class="btn info"  type="submit" value="Отправить">
         {% csrf_token %}
     </form></TH>
   <TH ALIGN=CENTER>
