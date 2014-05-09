@@ -39,7 +39,7 @@
      <select style="width: 100px;">
       <option>Filter 1</option>
       <option>Filter 2</option>
-    </select><a href="{% url 'varvar' %}">  <button type="button" class="btn btn-success">Выбор вариантов</button></a> <a href="{% url 'varvar' %}">  <button type="button" class="btn btn-success">Создать вариант</button></a>
+    </select><a href="{% url 'varvar' %}">  <button type="button" class="btn btn-success">Выбор вариантов</button></a> <a href="{% url 'add_var' %}">  <button type="button" class="btn btn-success">Создать вариант</button></a>
 <BR>
 {% for variants in model_variants %}
 <INPUT readonly="readonly" value="{{variants.num}}" NAME= "ci" SIZE= "0" MAXLENGTH= "10">  <INPUT disabled="disabled" value="{{variants.type_c.type_name}}" NAME= "cy" SIZE= "5" MAXLENGTH= "5">  <INPUT disabled="disabled" value="{{variants.pvar.p}}" NAME= "y" SIZE= "5" MAXLENGTH= "5"><br><br>

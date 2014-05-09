@@ -3,9 +3,11 @@
 <head>
 <title>{% block title %}{% endblock %}</title>
 <link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet">
+<link href="{{STATIC_URL}}css/bootstrap-multiselect.css" rel="stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="{{STATIC_URL}}js/bootstrap.js" type="text/javascript"> </script>
 <script src="{{STATIC_URL}}js/jquery.js" type="text/javascript"> </script>
+<script src="{{STATIC_URL}}js/bootstrap-multiselect.js" type="text/javascript"> </script>
 {% block extrastyle %}{% endblock %}
 
 {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}

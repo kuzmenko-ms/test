@@ -1,22 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.multiselect').multiselect();
+  });
+</script>
 <TABLE WIDTH=100%>
  <TR> 
   <TH VALIGN=TOP ALIGN=Middle>
   <form action="" method="post">         {% csrf_token %}
-   <label>Имя варианта</label> 
-        <input name="name_var" type="text" value="{{ name_var }}"><br>   
+   
+   <select class="multiselect" multiple="multiple" name="name_var">
+	{% for vrc in model_com %}
+          <option value="{{vrc.name}}">{{vrc.name}}</option>
+	{% endfor %}
+	</select>
+	   
+      
         <label>Тип компонента:</label>
 	<select name="type_comp">
 	{% for vr in model_vr %}
           <option value="{{vr.id}}">{{vr.type_name}}</option>
 	{% endfor %}
 	</select>
-	<label>Вероятность:</label>
-	<select name="p">
-	{% for var_p in model_p %}
-          <option value="{{var_p.id}}">{{var_p.p}}</option>
+	<label>Проект:</label>
+	<input name="p" type="text" value="{{ form.p}}">
+	<select name="var_project">
+	{% for var_proj in model_proj %}
+          <option value="{{var_proj.id}}">{{var_proj.title}}</option>
 	{% endfor %}
 	</select>
 	<br>

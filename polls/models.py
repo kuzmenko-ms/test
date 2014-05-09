@@ -37,7 +37,7 @@ class Variants(models.Model):
     project = models.ForeignKey(Project)
     type_c = models.ForeignKey(Component_type)#type_c = enum.EnumField(Component_type, default=Component_type.Component_A)
     num = models.CharField(max_length=255)
-    pvar = models.ForeignKey(Pvar1_var2)
+    pvar = models.FloatField()
     def _unicode_(self):
         return self.name
 

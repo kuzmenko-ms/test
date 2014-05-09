@@ -36,12 +36,15 @@ def varvar(request):
 def add_var(request):
     errors = []
     form = {}
+    model_com = Components.objects.all()
+    model_proj = Project.objects.all()
     model_vr = Component_type.objects.all()
     model_p = Pvar1_var2.objects.all()
     if request.POST:
         form['project_var'] = request.POST.get('project_var')
         form['name_var'] = request.POST.get('name_var')
         form['type_comp'] = request.POST.get('type_comp')
+        form['var_project'] = request.POST.get('var_project')
         form['p'] = request.POST.get('p')
         if not form['name_var']:
             errors.append('error name')
@@ -51,10 +54,10 @@ def add_var(request):
             errors.append('error name')        
         if not errors:
            
-            model1 = Variants(project_id = '53',type_c_id=form['type_comp'],num=form['name_var'],pvar_id=form['p'])
+            model1 = Variants(project_id = form['var_project'],type_c_id=form['type_comp'],num=form['name_var'],pvar=form['p'])
             model1.save()
        
-        return render(request, 'polls/var_add.html', {'errors': errors, 'form':form,'model_vr' : model_vr,'model_p' : model_p })
-    return render(request, 'polls/var_add.html', {'errors': errors,'model_vr' : model_vr,'model_p' : model_p })
+        return render(request, 'polls/var_add.html', {'errors': errors, 'form':form,'model_vr' : model_vr,'model_p' : model_p,'model_com' :model_com,'model_proj':model_proj })
+    return render(request, 'polls/var_add.html', {'errors': errors,'model_vr' : model_vr,'model_p' : model_p,'model_com' :model_com,'model_proj':model_proj })
 
     

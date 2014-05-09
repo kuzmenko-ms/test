@@ -42,8 +42,8 @@ class Variants(models.Model):
         return self.name
 
 class Pvar_var(models.Model):
-    var1 = models.ForeignKey(Variants)
-    var2 = models.ForeignKey(Variants)
+    var1 = models.ForeignKey(Variants, related_name='var1')
+    var2 = models.ForeignKey(Variants, related_name='var2')
     p = models.FloatField()
     
   
