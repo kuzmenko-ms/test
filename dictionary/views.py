@@ -43,7 +43,7 @@ def add_var(request):
     model_p = Pvar1_var2.objects.all()
     if request.POST:
         form['project_var'] = request.POST.get('project_var')
-        form['name_var'] = request.POST.get('name_var')
+        form['name_var'] = request.POST.getlist('name_var')
         form['type_comp'] = request.POST.get('type_comp')
         form['var_project'] = request.POST.get('var_project')
         form['p'] = request.POST.get('p')
@@ -55,7 +55,7 @@ def add_var(request):
             errors.append('error name')        
         if not errors:
            
-            model1 = Variants(project_id = form['var_project'],type_c_id=form['type_comp'],num=form['name_var'],pvar=form['p'])
+            model1 = Variants(project_id = form['var_project'],type_c_id=form['type_comp'],num=', '.join(form['name_var']),pvar=form['p'])
             model1.save()
        
         return render(request, 'polls/var_add.html', {'errors': errors, 'form':form,'model_vr' : model_vr,'model_p' : model_p,'model_com' :model_com,'model_proj':model_proj,'model_var_v' : model_var_v })
