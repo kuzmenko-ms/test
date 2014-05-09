@@ -2,10 +2,83 @@
 
 {% block content %}
 
+
+<script>
+$(document).ready(function() {
+    /*$('#btn-add').click(function(){
+        $('#select-from option:selected').each( function() {
+                $('#select-to').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
+            $(this).remove();
+        });
+    });
+    $('#btn-remove').click(function(){
+        $('#select-to option:selected').each( function() {
+            $('#select-from').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
+            $(this).remove();
+        });
+    });
+    $('#btn-up').bind('click', function() {
+        $('#select-to option:selected').each( function() {
+            var newPos = $('#select-to option').index(this) - 1;
+            if (newPos > -1) {
+                $('#select-to option').eq(newPos).before("<option value='"+$(this).val()+"' selected='selected'>"+$(this).text()+"</option>");
+                $(this).remove();
+            }
+        });
+    });
+    $('#btn-down').bind('click', function() {
+        var countOptions = $('#select-to option').size();
+        $('#select-to option:selected').each( function() {
+            var newPos = $('#select-to option').index(this) + 1;
+            if (newPos < countOptions) {
+                $('#select-to option').eq(newPos).after("<option value='"+$(this).val()+"' selected='selected'>"+$(this).text()+"</option>");
+                $(this).remove();
+            }
+        });
+    });*/
+    components = {{ data_1 | save }}
+    /*[
+        {'t':0, 'name':'name1'},
+        {'t':1, 'name':'name2'},
+        {'t':2, 'name':'name3'},
+        {'t':3, 'name':'name4'},
+        {'t':3, 'name':'name5'}
+    ]*/
+    $('[name="type_comp"]').change(function() {
+        $('[name="name_var"] > option').each( function() {
+            $('option[value="' + $(this).val() +  '"]', $('[name="name_var"]')).remove();
+            //console.log($(this).val());
+            //$('#select-from').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
+            //$(this).remove();
+        });
+        //console.log($('[name="type_comp"]').find(":selected").text());
+        to_add = components.filter(function (vr){
+            return vr['t'] == $('[name="type_comp"]').find(":selected").text();
+        });
+        //console.log(to_add)
+        to_add.map(function (x,y,z){
+            $('[name="name_var"]').append('<option value="' + x['name'] + '">' + x['name'] + '</option>').multiselect('rebuild');
+            //console.log(x);
+            //console.log(y);
+            //console.log(z);
+        })
+        //$('[name="name_var"]').append('<option value="123">312</option>').multiselect('rebuild');
+        $('[name="name_var"]').multiselect('destroy');
+        $('[name="name_var"]').multiselect();
+        $('[name="name_var"]').multiselect().trigger('reset');
+        //console.log($('[name="name_var"]'));  
+    });
+    //$('.multiselect').multiselect();
+    $('[name="name_var"]').append('<option value="123">312</option>').multiselect('rebuild');;
+    //$('.multiselect').multiselect();
+    
+});
+</script>
+
 <script type="text/javascript">
-  $(document).ready(function() {
-    $('.multiselect').multiselect();
-  });
+  //$(document).ready(function() {
+  //  $('.multiselect').multiselect();
+  //});
 </script>
 <TABLE WIDTH=100%>
  <TR> 
@@ -62,5 +135,7 @@
  
  </TR>
 </TABLE>
+
+
 <a href="{% url 'list1' %}"><span class="label label-success">Вернуться к проектам</splan></a>
 {% endblock %}
