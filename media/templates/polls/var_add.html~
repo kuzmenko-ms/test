@@ -24,14 +24,16 @@
 	{% for vr in model_vr %}
           <option value="{{vr.id}}">{{vr.type_name}}</option>
 	{% endfor %}
-	</select>
-	<label>Проект:</label>
+	</select><br>
+	<label>Вероятность:</label>
 	<input name="p" type="text" value="{{ form.p}}">
-	<select name="p">
+	<label>Проект:</label>
+	<select name="var_project">
 	{% for var_proj in model_proj %}
           <option value="{{var_proj.id}}">{{var_proj.title}}</option>
 	{% endfor %}
 	</select>
+	<br>
 	<br>
         <input class="btn info"  type="submit" value="Отправить"></form>
     </form>
@@ -40,4 +42,25 @@
 	</TH>
  </TR>
 </TABLE>
+<TABLE>
+<CAPTION>Variants</CAPTION>
+<TR>
+<TH width=100>Имя компонента    </TH>
+<TH width=30>  Тип    </TH>
+<TH width=30>  Вероятность   </TH>
+<TH width=30>   </TH>
+</TR>
+{% for variants in model_var_v %}
+<TR>
+<TD width=30> {{variants.num}}</TD>
+<TD ALIGN=CENTER >{{variants.type_c.type_name}}</TD>
+<TD>{{variants.pvar}}</TD>	
+<TD>  <a href="{% url 'delete_var' variants.id %}"> <span class="label label-important">удалить</span> </a></TD>
+</TR>
+{% endfor %}
+</TABLE>
+ 
+ </TR>
+</TABLE>
+<a href="{% url 'list1' %}"><span class="label label-success">Вернуться к проектам</splan></a>
 {% endblock %}

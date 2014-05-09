@@ -55,7 +55,7 @@
 <TD width=30> {{variants.num}}</TD>
 <TD ALIGN=CENTER >{{variants.type_c.type_name}}</TD>
 <TD>{{variants.pvar}}</TD>	
-<TD>  <a href="{% url 'delete_var' variants.id %}"> <span>del</span> </a></TD>
+<TD>  <a href="{% url 'delete_var' variants.id %}"> <span class="label label-important">удалить</span> </a></TD>
 </TR>
 {% endfor %}
 </TABLE>

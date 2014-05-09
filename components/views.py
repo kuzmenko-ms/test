@@ -39,7 +39,7 @@ def delete_var(request, id_v):
         model_v[0].delete()
     else:
         errors.append('Bad index :(')  
-    return redirect('/polls/56/')    
+    return redirect('/dictionary/addvar')    
 
 def delete_proj(request, id_p):
         errors = []
@@ -49,7 +49,7 @@ def delete_proj(request, id_p):
             model_d_project[0].delete()
         else:
             errors.append('Bad index :(')  
-        return redirect('/polls/project_detail')    
+        return redirect('/polls/')    
     
 def dictionary(request):
     model11 = Components.objects.all()

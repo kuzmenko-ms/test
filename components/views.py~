@@ -39,7 +39,7 @@ def delete_var(request, id_v):
         model_v[0].delete()
     else:
         errors.append('Bad index :(')  
-    return redirect('/polls/56/')    
+    return redirect('/polls/var_add.html')    
 
 def delete_proj(request, id_p):
         errors = []

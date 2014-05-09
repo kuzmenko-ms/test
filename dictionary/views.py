@@ -36,6 +36,7 @@ def varvar(request):
 def add_var(request):
     errors = []
     form = {}
+    model_var_v = Variants.objects.all()
     model_com = Components.objects.all()
     model_proj = Project.objects.all()
     model_vr = Component_type.objects.all()
@@ -57,7 +58,7 @@ def add_var(request):
             model1 = Variants(project_id = form['var_project'],type_c_id=form['type_comp'],num=form['name_var'],pvar=form['p'])
             model1.save()
        
-        return render(request, 'polls/var_add.html', {'errors': errors, 'form':form,'model_vr' : model_vr,'model_p' : model_p,'model_com' :model_com,'model_proj':model_proj })
-    return render(request, 'polls/var_add.html', {'errors': errors,'model_vr' : model_vr,'model_p' : model_p,'model_com' :model_com,'model_proj':model_proj })
+        return render(request, 'polls/var_add.html', {'errors': errors, 'form':form,'model_vr' : model_vr,'model_p' : model_p,'model_com' :model_com,'model_proj':model_proj,'model_var_v' : model_var_v })
+    return render(request, 'polls/var_add.html', {'errors': errors,'model_vr' : model_vr,'model_p' : model_p,'model_com' :model_com,'model_proj':model_proj,'model_var_v' : model_var_v })
 
     
