@@ -41,10 +41,24 @@
       <option>Filter 2</option>
     </select><a href="{% url 'varvar' %}">  <button type="button" class="btn btn-success">Выбор вариантов</button></a> <a href="{% url 'add_var' %}">  <button type="button" class="btn btn-success">Создать вариант</button></a>
 <BR>
+
+<TABLE>
+<CAPTION>Variants</CAPTION>
+<TR>
+<TH width=100>Имя компонента    </TH>
+<TH width=30>  Тип    </TH>
+<TH width=30>  Вероятность   </TH>
+<TH width=30>   </TH>
+</TR>
 {% for variants in model_variants %}
-<INPUT readonly="readonly" value="{{variants.num}}" NAME= "ci" SIZE= "0" MAXLENGTH= "10">  <INPUT disabled="disabled" value="{{variants.type_c.type_name}}" NAME= "cy" SIZE= "5" MAXLENGTH= "5">  <INPUT disabled="disabled" value="{{variants.pvar.p}}" NAME= "y" SIZE= "5" MAXLENGTH= "5"><br><br>
-	{% endfor %}
-	
+<TR>
+<TD width=30> {{variants.num}}</TD>
+<TD ALIGN=CENTER >{{variants.type_c.type_name}}</TD>
+<TD>{{variants.pvar}}</TD>	
+<TD>  <a href="{% url 'delete_var' variants.id %}"> <span>удалить</span> </a></TD>
+</TR>
+{% endfor %}
+</TABLE>
  
  </TR>
 </TABLE>

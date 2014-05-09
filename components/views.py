@@ -1,5 +1,5 @@
 from django.template import RequestContext
-from polls.models import Project
+from polls.models import Project,Variants
 from polls.models import Components
 from polls.models import Component_type
 from django.views.generic import ListView, DetailView
@@ -29,6 +29,17 @@ def delete_comp(request, id_c):
     else:
         errors.append('Bad index :(')  
     return redirect('/components/')
+    
+def delete_var(request, id_v):
+    model_v = Variants.objects.all()
+    errors = []
+    form = {}
+    model_d_com = Variants.objects.filter(id=id_v)
+    if len(model_v) > 0:
+        model_v[0].delete()
+    else:
+        errors.append('Bad index :(')  
+    return redirect('/polls/56/')    
 
 def delete_proj(request, id_p):
         errors = []
@@ -38,7 +49,7 @@ def delete_proj(request, id_p):
             model_d_project[0].delete()
         else:
             errors.append('Bad index :(')  
-        return redirect('/polls/')    
+        return redirect('/polls/project_detail')    
     
 def dictionary(request):
     model11 = Components.objects.all()
