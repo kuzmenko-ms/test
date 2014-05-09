@@ -1,6 +1,8 @@
-{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+{% load admin_static %}{% load firstof from future %}
+<!DOCTYPE html>
+<html> 
 <head>
+<meta charset="utf-8">
 <title>{% block title %}{% endblock %}</title>
 <link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet">
 <link href="{{STATIC_URL}}css/bootstrap-multiselect.css" rel="stylesheet">

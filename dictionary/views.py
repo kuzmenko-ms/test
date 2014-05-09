@@ -7,6 +7,7 @@ from django.forms import ModelForm
 from django.shortcuts import redirect
 import random
 import json
+import codecs
 from django.shortcuts import HttpResponse
 from django.shortcuts import render
 
@@ -38,7 +39,7 @@ def add_var(request):
     form = {}
     model_var_v = Variants.objects.all()
     model_com = Components.objects.all()
-    data_1 = [{'t' : str(x.type_c.type_name), 'name' : unicode(x.name) } for x in model_com]
+    data_1 = [{'t' : str(x.type_c.type_name), 'name' : x.name } for x in model_com]
     model_proj = Project.objects.all()
     model_vr = Component_type.objects.all()
     model_p = Pvar1_var2.objects.all()
@@ -56,10 +57,10 @@ def add_var(request):
             errors.append('error name')        
         if not errors:
            
-            model1 = Variants(project_id = form['var_project'],type_c_id=form['type_comp'],num=', '.join(form['name_var']),pvar=form['p'])
+            model1 = Variants(project_id = form['var_project'],type_c_id=form['type_comp'],num=' + '.join(form['name_var']),pvar=form['p'])
             model1.save()
        
-        return render(request, 'polls/var_add.html', {'errors': errors, 'form':form,'model_vr' : model_vr,'model_p' : model_p,'model_com' :model_com,'model_proj':model_proj,'model_var_v' : model_var_v, 'modle_1' : model_1 })
+        return render(request, 'polls/var_add.html', {'errors': errors, 'form':form,'model_vr' : model_vr,'model_p' : model_p,'model_com' :model_com,'model_proj':model_proj,'model_var_v' : model_var_v, 'data_1' : data_1 })
     return render(request, 'polls/var_add.html', {'errors': errors,'model_vr' : model_vr,'model_p' : model_p,'model_com' :model_com,'model_proj':model_proj,'model_var_v' : model_var_v, 'data_1' : data_1})
 
     
